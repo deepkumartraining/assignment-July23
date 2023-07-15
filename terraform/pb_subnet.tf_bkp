@@ -6,17 +6,13 @@ resource "aws_subnet" "public_subnet1" {
   map_public_ip_on_launch = true
   availability_zone       = "ap-south-1a"
   #tags                    = var.tags_subnet_1
-  tags {
-    Name = "tf-pub-ap-south-1a"
+  tags                    = "tf-pub-ap-south-1a"
   }
-}
 
 resource "aws_route_table" "public_route_table1" {
   vpc_id        = aws_vpc.vpc.id
 #  rt_tags       = var.rt_tags_pub
-  tags {
-    Name = "tf-rt-public"
-  }
+   tags          = "tf-rt-public"
 }
 
 resource "aws_route" "public_route1" {
@@ -38,18 +34,13 @@ resource "aws_subnet" "public_subnet2" {
   map_public_ip_on_launch = true
   availability_zone       = "ap-south-1b"
   #tags                    = var.tags_subnet2
-  tags {
-    Name = "tf-pub-ap-south-1b"
-  }
+  tags                    = "tf-pub-ap-south-1b"
 }
 
 resource "aws_route_table" "public_route_table2" {
   vpc_id        = aws_vpc.vpc.id
 #  rt_tags       = var.rt_tags_pub
-  tags {
-    Name = "tf-rt-public"
-  }
-
+  tags          = "tf-rt-public"
 }
 
 resource "aws_route" "public_route2" {
