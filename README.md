@@ -9,7 +9,7 @@ Geo Location Routing Policy
 Multi Value Routing Policy
 
 
-Monolithic Example - 3 Tier
+3 Tier Architecture for web applications
 Web/UI layer
 Public subnet
 Security Group - Web Layer
@@ -49,13 +49,11 @@ API gateway can introduce in from of Web Layer to provide better security in ter
 Proper IAM based setup - User/Group/Role based authentication
 
 NAT instance can setup for internet access on private subnet based instances
-Bastian host can introduce for any admin activities
 
 EBS can placed for block storage, backup and archival process can be setup based on busines requirement
-
+EFS can be introduced in place of EBS for persistent storage
 DB end:
 Cache DB can introduce in front of RDS to provide faster response by cache
--- Memcache
 -- Redis
 
 If Website/application is read centric then we can introduce read replicas and configure read operation with the help of DB proxies.
@@ -66,6 +64,8 @@ Also in place of Multi AZ, read replica can setup in different AZ and in case of
 
 Static Hosting (S3 Buckets) -> Cloudfront Distribution (CDN) -> Edge Networks -> Route53 -> User can access globally
 
+Dynamo DB can introduce in case of large set of non relational data, best fit solution for AWS managed no sql db with multiple read replica and HA options
+
 Monitoring can include:
 
 if wants aws centric then it can achive with CloudWatch
@@ -75,20 +75,6 @@ In case third party vendors need to configure - For example - Splunk
 Logsync can establish with AWS Appsync and destination would be Splunk
 On top of that need based monitoring/dashboarding can configure accordingly
 
-
-Disadvantages of Monolithic Pattern
-Tightly Coupled
-Any change has cascading impact
-Deployment frequency would be slow
-Portability is a challenge
-Scalability
-Realibility
-Future readiness/Technological advancement
-
-Benefits:
-Easier deployments
-Simplified testing because of end to end integration available at one place
-Debugging would be faster
 
 Open Question:
 Why we need to put web layer in public subnet, it can be in private subnet as well and accessible via NAT Gateway

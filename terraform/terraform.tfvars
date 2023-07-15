@@ -54,7 +54,7 @@ tags_subnet_4 = {
 module "subnet-rds-priv-1a" {
   source      = "./modules/subnet"
   vpc_id      = module.my_vpc.my_vpc_id
-  cidr_subnet = "172.16.5.0/24"
+  cidr_subnet = "10.0.5.0/24"
   az_subnet   = "ap-south-1a"
   public      = false
   tags_subnet = {
