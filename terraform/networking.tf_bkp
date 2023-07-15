@@ -1,3 +1,4 @@
+/* --COmmented due to movement in another file
 #vpc
 module "my_vpc" {
   source   = "./modules/vpc"
@@ -55,6 +56,10 @@ module "public_rt" {
 #   value = module.public_rt.rt_id
 # }
 
+*/
+
+
+/*
 module "private_rt" {
   source        = "./modules/route_tables"
   rt_tags       = var.rt_tags_priv
@@ -69,3 +74,4 @@ module "private_rt" {
 
 
 
+*/
