@@ -49,13 +49,13 @@ resource "aws_route_table" "public_route_table1" {
   rt_tags       = var.rt_tags_pub
 }
 
-resource "aws_route" "public_route" {
+resource "aws_route" "public_route1" {
   route_table_id         = aws_route_table.public_route_table1.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_internet_gateway.gw.id
 }
 
-resource "aws_route_table_association" "public_subnet_association" {
+resource "aws_route_table_association" "public_subnet_association1" {
   subnet_id      = aws_subnet.public_subnet1.id
   route_table_id = aws_route_table.public_route_table1.id
 }
@@ -75,13 +75,13 @@ resource "aws_route_table" "public_route_table2" {
   rt_tags       = var.rt_tags_pub
 }
 
-resource "aws_route" "public_route" {
+resource "aws_route" "public_route2" {
   route_table_id         = aws_route_table.public_route_table2.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_internet_gateway.gw.id
 }
 
-resource "aws_route_table_association" "public_subnet_association" {
+resource "aws_route_table_association" "public_subnet_association2" {
   subnet_id      = aws_subnet.public_subnet2.id
   route_table_id = aws_route_table.public_route_table2.id
 }
