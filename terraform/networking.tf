@@ -5,9 +5,9 @@ module "my_vpc" {
   tags_vpc = var.tags_vpc
 }
 
-# output "vpc_id" {
-#   value = module.my_vpc.my_vpc_id
-# }
+output "vpc_id" {
+  value = module.my_vpc.my_vpc_id
+}
 
 #Internet gateway
 module "igw" {

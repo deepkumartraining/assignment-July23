@@ -1,4 +1,4 @@
-module "subnet-rds-priv-1a" {
+/* module "subnet-rds-priv-1a" {
   source      = "./modules/subnet"
   vpc_id      = module.my_vpc.my_vpc_id
   cidr_subnet = "172.16.5.0/24"
@@ -7,9 +7,7 @@ module "subnet-rds-priv-1a" {
   tags_subnet = {
   Name = "tf-priv-rds-ap-south-1a",
   Kind = "practice"
-}
-
-
+  }
 }
 
 # output "subnet-rds-priv-1a-id" {
@@ -25,14 +23,13 @@ module "subnet-rds-priv-1b" {
   tags_subnet = {
   Name = "tf-priv-rds-ap-south-1b",
   Kind = "practice"
-}
-
-
+  }
 }
 
 # output "subnet-rds-priv-1b-id" {
 #   value = module.subnet-rds-priv-1b.subnet_id
 # }
+*/
 # rt association
 module "rt_ass_rds_priv_1a" {
   source         = "./modules/rt_association"

@@ -6,12 +6,12 @@ tags_vpc = {
   Name = "tf-vpc",
   Kind = "practice"
 }
-cidr_vpc = "172.16.0.0/16"
+cidr_vpc = "10.0.0.0/16"
 
 ######################
 #subnet-1-public-ap-south-1a
 #vpc_id
-cidr_subnet_1 = "172.16.1.0/24"
+cidr_subnet_1 = "10.0.1.0/24"
 az_subnet_1   = "ap-south-1a"
 public_1      = "true"
 tags_subnet_1 = {
@@ -19,10 +19,9 @@ tags_subnet_1 = {
   Kind = "practice"
 }
 
-
 #######################
 #subnet-2-public-ap-south-1b
-cidr_subnet_2 = "172.16.2.0/24"
+cidr_subnet_2 = "10.0.2.0/24"
 az_subnet_2   = "ap-south-1b"
 public_2      = "true"
 tags_subnet_2 = {
@@ -30,10 +29,9 @@ tags_subnet_2 = {
   Kind = "practice"
 }
 
-
 #######################
 #subnet-1-private-ap-south-1a
-cidr_subnet_3 = "172.16.3.0/24"
+cidr_subnet_3 = "10.0.3.0/24"
 az_subnet_3   = "ap-south-1a"
 public_3      = "false"
 tags_subnet_3 = {
@@ -43,12 +41,41 @@ tags_subnet_3 = {
 
 #######################
 #subnet-2-private-ap-south-1b
-cidr_subnet_4 = "172.16.4.0/24"
+cidr_subnet_4 = "10.0.4.0/24"
 az_subnet_4   = "ap-south-1b"
 public_4      = "false"
 tags_subnet_4 = {
   Name = "tf-priv-ap-south-1b",
   Kind = "practice"
+}
+
+#######################
+#subnet-5-private-ap-south-1a for rds
+module "subnet-rds-priv-1a" {
+  source      = "./modules/subnet"
+  vpc_id      = module.my_vpc.my_vpc_id
+  cidr_subnet = "172.16.5.0/24"
+  az_subnet   = "ap-south-1a"
+  public      = false
+  tags_subnet = {
+  Name = "tf-priv-rds-ap-south-1a",
+  Kind = "practice"
+  }
+}
+
+#######################
+#subnet-6-private-ap-south-16 for rds
+
+module "subnet-rds-priv-1b" {
+  source      = "./modules/subnet"
+  vpc_id      = module.my_vpc.my_vpc_id
+  cidr_subnet = "10.0.6.0/24"
+  az_subnet   = "ap-south-1b"
+  public      = false
+  tags_subnet = {
+  Name = "tf-priv-rds-ap-south-1b",
+  Kind = "practice"
+  }
 }
 
 #######################
