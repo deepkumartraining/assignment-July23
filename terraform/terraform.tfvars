@@ -48,7 +48,7 @@ tags_subnet_4 = {
   Name = "tf-priv-ap-south-1b",
   Kind = "practice"
 }
-
+/*
 #######################
 #subnet-5-private-ap-south-1a for rds
 module "subnet-rds-priv-1a" {
@@ -77,7 +77,7 @@ module "subnet-rds-priv-1b" {
   Kind = "practice"
   }
 }
-
+*/
 #######################
 #igw
 tags_igw = {
