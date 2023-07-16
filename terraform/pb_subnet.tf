@@ -37,7 +37,7 @@ resource "aws_subnet" "public_subnet2" {
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "ap-south-1b"
-  tags                    = var.tags_subnet2
+  tags                    = var.tags_subnet_2
   #tags                    = "tf-pub-ap-south-1b"
 }
 

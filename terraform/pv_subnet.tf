@@ -50,7 +50,7 @@ resource "aws_subnet" "private_subnet2" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "10.0.4.0/24"
   availability_zone       = "ap-south-1b"
-  tags                    = var.tags_subnet4
+  tags                    = var.tags_subnet_4
   #tags {
   #  Name = "tf-priv-ap-south-1a"
   #}
