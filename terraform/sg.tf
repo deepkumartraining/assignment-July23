@@ -54,7 +54,7 @@ resource "aws_security_group" "web_server-sg" {
 }
 
 # App server - Security Group
-### This needs to configure for Web -> App -> DB layer details
+### This needs to configure for Web -> App -> DB layer details - need to check
 
 resource "aws_security_group" "app-alb-sg" {
   vpc_id = aws_vpc.vpc.id
@@ -119,11 +119,13 @@ resource "aws_security_group" "app_server-sg" {
 #RDS Security Group
 resource "aws_security_group" "db_sg" {
   vpc_id = aws_vpc.vpc.id
+  name        = "db-sg"
+  description = "Security group for DB tier"
   ingress {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    #security_groups = null #need to configure for security
+    #security_groups = null #need to configure for security - need to check
     security_groups = [aws_security_group.app_server-sg.id]
     #cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
   }

@@ -206,7 +206,7 @@ variable "egress_rules_app_server" {
 }
 variable "sg_description_app_server" {
   type = string
-}
+}vpc_zone_identifier
 variable "tags_sg_app_server" {
   type = map(any)
 }
@@ -236,6 +236,15 @@ variable "tags_subnet_group" {
 variable "rds_subnet_group" {
   type = string
 }
+
+##############################
+#ALB variables 
+variable is_internal{
+    type = bool
+    default = false
+}
+
+
 
 ##############################
 #target group 
