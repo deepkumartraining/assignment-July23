@@ -71,3 +71,12 @@ variable "subnet_count" {
 variable "vpc_id" {
   description = "VPC ID"
 }
+
+variable "tags_vpc" {
+  description = "Tags for the VPC"
+  type        = map(string)
+  default     = {
+    Name = "MyVPC"
+    Environment = "Practice"
+  }
+}
