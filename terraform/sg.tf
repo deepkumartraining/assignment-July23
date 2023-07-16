@@ -40,7 +40,7 @@ resource "aws_security_group" "app_sg" {
     from_port        = 8080
     to_port          = 8080
     protocol         = "tcp"
-    security_groups = [aws_security_group.ilb_intermediate_sg.id]
+    security_groups = [aws_security_group.ilb_sg.id]
   }
 
   # Ingress rule for SSH traffic from a specific IP range (example)
@@ -74,11 +74,11 @@ resource "aws_security_group" "ilb_intermediate_sg" {
     security_groups = [aws_security_group.db_sg.id]
   }
 
-  # Egress rule allowing all traffic
+  # Egress rule allowing all traffic to the app tier security group
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
     security_groups = [aws_security_group.app_sg.id]
   }
 }
@@ -97,11 +97,27 @@ resource "aws_security_group" "db_sg" {
     security_groups = [aws_security_group.ilb_intermediate_sg.id]
   }
 
-  # Egress rule allowing all traffic
+  # Egress rule allowing all traffic to the intermediate security group
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
     security_groups = [aws_security_group.ilb_intermediate_sg.id]
   }
+}
+
+# Create public subnets
+resource "aws_subnet" "public_subnet" {
+  count             = var.subnet_count
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.public_subnet_cidr_blocks[count.index]
+  availability_zone = element(var.availability_zones, count.index)
+}
+
+# Create private subnets
+resource "aws_subnet" "private_subnet" {
+  count             = var.subnet_count
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.private_subnet_cidr_blocks[count.index]
+  availability_zone = element(var.availability_zones, count.index)
 }
