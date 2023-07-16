@@ -91,7 +91,7 @@ resource "aws_route_table_association" "private_subnet_3_association" {
 
 resource "aws_subnet" "private_subnet4" {
   vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = "10.0.4.0/24"
+  cidr_block              = "10.0.6.0/24"
   availability_zone       = "ap-south-1b"
   tags                    = var.tags_subnet_6  
 }
