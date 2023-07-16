@@ -29,41 +29,18 @@ resource "aws_security_group" "web_sg" {
   }
 }
 
-# Create security group for intermediate access from ILB to app tier
-resource "aws_security_group" "ilb_intermediate_sg" {
-  name        = "ilb-intermediate-sg"
-  description = "Intermediate security group for ILB to app tier access"
-  vpc_id      = aws_vpc.vpc.id
-
-  # Ingress rule for HTTP traffic from the ILB security group
-  ingress {
-    from_port        = 8080
-    to_port          = 8080
-    protocol         = "tcp"
-    security_groups = [aws_security_group.ilb_sg.id]
-  }
-
-  # Egress rule allowing all traffic to the app tier security group
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    security_groups = [aws_security_group.app_sg.id]
-  }
-}
-
 # Create security group for app tier
 resource "aws_security_group" "app_sg" {
   name        = "app-sg"
   description = "Security group for app tier"
   vpc_id      = aws_vpc.vpc.id
 
-  # Ingress rule for HTTP traffic from the intermediate security group
+  # Ingress rule for HTTP traffic from the web security group
   ingress {
     from_port        = 8080
     to_port          = 8080
     protocol         = "tcp"
-    security_groups = [aws_security_group.ilb_intermediate_sg.id]
+    security_groups = [aws_security_group.web_sg.id]
   }
 
   # Ingress rule for SSH traffic from a specific IP range (example)
@@ -89,12 +66,12 @@ resource "aws_security_group" "ilb_sg" {
   description = "Security group for ILB"
   vpc_id      = aws_vpc.vpc.id
 
-  # Ingress rule for HTTP traffic from the app tier security group
+  # Ingress rule for HTTP traffic from the app security group
   ingress {
     from_port        = 8080
     to_port          = 8080
     protocol         = "tcp"
-    security_groups = [aws_security_group.ilb_intermediate_sg.id]
+    security_groups = [aws_security_group.app_sg.id]
   }
 
   # Egress rule allowing all traffic
@@ -104,4 +81,31 @@ resource "aws_security_group" "ilb_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+# Create security group for intermediate access from app tier to ILB
+resource "aws_security_group" "app_ilb_intermediate_sg" {
+  name        = "app-ilb-intermediate-sg"
+  description = "Intermediate security group for app tier to ILB access"
+  vpc_id      = aws_vpc.vpc.id
+}
+
+# Ingress rule for ILB traffic from the intermediate security group
+resource "aws_security_group_rule" "ilb_intermediate_sg_ingress" {
+  security_group_id = aws_security_group.app_ilb_intermediate_sg.id
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  source_security_group_id = aws_security_group.ilb_sg.id
+}
+
+# Egress rule for app traffic to the intermediate security group
+resource "aws_security_group_rule" "app_ilb_intermediate_sg_egress" {
+  security_group_id = aws_security_group.app_ilb_intermediate_sg.id
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  source_security_group_id = aws_security_group.app_sg.id
 }
