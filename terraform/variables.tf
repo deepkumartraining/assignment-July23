@@ -229,3 +229,13 @@ variable "tags_app_tg" {
 variable "tags_web_tg" {
   type = map(any)
 }
+
+##########################################
+#DB Subnet
+variable "tags_subnet_5" {
+  type = map(any)
+}
+
+variable "tags_subnet_6" {
+  type = map(any)
+}
