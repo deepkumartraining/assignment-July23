@@ -222,9 +222,6 @@ variable "tags_alb_app" {
 }
 ##############################
 #RDS Details
-variable "subnet_group_name" {
-  type = string
-}
 
 variable "database_subnets" {
   description = "CIDR blocks for database subnets"
