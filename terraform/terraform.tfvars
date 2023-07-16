@@ -171,7 +171,7 @@ egress_rules_web = [
 sg_description_web = " SG for WEB ALB"
 
 ##############################
-#sg_alb_web
+#sg_alb_app
 sg_name_app = "app-alb-sg"
 tags_sg_app = {
   Name = "tf-app-alb-sg",
