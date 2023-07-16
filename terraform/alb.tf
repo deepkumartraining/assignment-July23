@@ -38,3 +38,29 @@ resource "aws_security_group" "alb_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+# internal lb
+resource "aws_lb" "ilb" {
+  name               = "internal-load-balancer"
+  internal           = true
+  load_balancer_type = "network"
+  subnets            = aws_subnet.private_subnet[*].id
+}
+
+resource "aws_lb_target_group" "app_tg" {
+  name     = "app-target-group"
+  port     = 8080
+  protocol = "TCP"
+  vpc_id   = aws_vpc.vpc.id
+}
+
+resource "aws_lb_listener" "app_listener" {
+  load_balancer_arn = aws_lb.ilb.arn
+  port              = 8080
+  protocol          = "TCP"
+
+  default_action {
+    target_group_arn = aws_lb_target_group.app_tg.arn
+    type             = "forward"
+  }
+}
