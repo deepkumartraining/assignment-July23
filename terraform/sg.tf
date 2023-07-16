@@ -88,7 +88,7 @@ resource "aws_security_group" "app-alb-sg" {
 # App Server Security Group
 resource "aws_security_group" "app_server-sg" {
   vpc_id = aws_vpc.vpc.id
-  tags = var.tags_sg_web_server
+  tags = var.tags_sg_app_server
   description = var.sg_description_app_server
   ingress {
     description = "allow on 80"
@@ -124,7 +124,7 @@ resource "aws_security_group" "db_sg" {
     to_port     = 3306
     protocol    = "tcp"
     #security_groups = null #need to configure for security
-    security_groups = [aws_security_group.web_sg.id]
+    security_groups = [aws_security_group.app_server-sg.id]
     #cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
   }
   egress {
