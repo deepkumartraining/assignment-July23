@@ -5,17 +5,11 @@ resource "aws_subnet" "private_subnet1" {
   cidr_block              = "10.0.3.0/24"
   availability_zone       = "ap-south-1a"
   tags                    = var.tags_subnet_3
-  #tags {
-  #  Name = "tf-priv-ap-south-1a"
-  #}
 }
 
 resource "aws_route_table" "private_route_table" {
   vpc_id        = aws_vpc.vpc.id
-  tags       = var.rt_tags_priv
-  #tags {
-  #  Name = "tf-rt-private"
-  #}
+  tags          = var.rt_tags_priv
 }
 
 resource "aws_route_table_association" "private_subnet_1_association" {
@@ -51,9 +45,6 @@ resource "aws_subnet" "private_subnet2" {
   cidr_block              = "10.0.4.0/24"
   availability_zone       = "ap-south-1b"
   tags                    = var.tags_subnet_4
-  #tags {
-  #  Name = "tf-priv-ap-south-1a"
-  #}
 }
 
 resource "aws_route_table_association" "private_subnet_2_association" {
@@ -83,3 +74,30 @@ resource "aws_route_table_association" "private_subnet_association" {
 }
 
 */
+
+# Private Subnet - RDS
+
+resource "aws_subnet" "private_subnet3" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.5.0/24"
+  availability_zone       = "ap-south-1a"
+  tags                    = var.tags_subnet_5  
+}
+
+resource "aws_route_table_association" "private_subnet_3_association" {
+  subnet_id      = aws_subnet.private_subnet3.id
+  route_table_id = aws_route_table.private_route_table.id
+}
+
+resource "aws_subnet" "private_subnet4" {
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = "10.0.4.0/24"
+  availability_zone       = "ap-south-1b"
+  tags                    = var.tags_subnet_6  
+}
+
+resource "aws_route_table_association" "private_subnet_4_association" {
+  subnet_id      = aws_subnet.private_subnet4.id
+  route_table_id = aws_route_table.private_route_table.id
+}
+
