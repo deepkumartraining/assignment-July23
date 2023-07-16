@@ -1,266 +1,54 @@
-#Project region
-variable "region" {
-  type = string
-}
-############################
-#vpc
-variable "tags_vpc" {
-  type = map(any)
+variable "aws_region" {
+  description = "AWS region"
+  default     = "ap-south-1"
 }
 
-variable "cidr_vpc" {
-  type = string
+variable "vpc_cidr_block" {
+  description = "CIDR block for VPC"
+  default     = "10.0.0.0/16"
 }
 
-#############################
-#subnet-1-public-ap-south-1a
-
-# variable vpc_id {
-#     type=string
-# }
-
-variable "cidr_subnet_1" {
-  type = string
+variable "subnet_count" {
+  description = "Number of subnets to create"
+  default     = 2
 }
 
-variable "az_subnet_1" {
-  type = string
+variable "availability_zones" {
+  description = "Availability zones"
+  default     = ["ap-south-1a", "ap-south-1b"]
 }
 
-variable "tags_subnet_1" {
-  type = map(any)
+variable "ssh_cidr_block" {
+  description = "CIDR block for SSH access"
+  default     = "192.168.0.0/24"
 }
 
-variable "public_1" {
-  type = bool
+variable "web_ami_id" {
+  description = "AMI ID for web instances"
+  default     = "ami-0f11bdca99c4ccd38"
 }
 
-#############################
-#subnet-2-public-ap-south-1b
-
-# variable vpc_id {
-#     type=string
-# }
-
-variable "cidr_subnet_2" {
-  type = string
+variable "app_ami_id" {
+  description = "AMI ID for app instances"
+  default     = "ami-0f11bdca99c4ccd38"
 }
 
-variable "az_subnet_2" {
-  type = string
+variable "instance_type" {
+  description = "Instance type for web and app instances"
+  default     = "t2.micro"
 }
 
-variable "tags_subnet_2" {
-  type = map(any)
+variable "asg_min_size" {
+  description = "Minimum size for auto scaling group"
+  default     = 2
 }
 
-variable "public_2" {
-  type = bool
+variable "asg_max_size" {
+  description = "Maximum size for auto scaling group"
+  default     = 4
 }
 
-#############################
-#subnet-3-public-ap-south-1a
-
-# variable vpc_id {
-#     type=string
-# }
-
-variable "cidr_subnet_3" {
-  type = string
-}
-
-variable "az_subnet_3" {
-  type = string
-}
-
-variable "tags_subnet_3" {
-  type = map(any)
-}
-
-variable "public_3" {
-  type = bool
-}
-
-#############################
-#subnet-4-public-ap-south-1a
-
-# variable vpc_id {
-#     type=string
-# }
-
-variable "cidr_subnet_4" {
-  type = string
-}
-
-variable "az_subnet_4" {
-  type = string
-}
-
-variable "tags_subnet_4" {
-  type = map(any)
-}
-
-variable "public_4" {
-  type = bool
-}
-
-#############################
-#igw
-
-variable "tags_igw" {
-  type = map(any)
-}
-
-##############################
-#route_table
-
-variable "rt_tags_pub" {
-  type = map(any)
-}
-variable "rt_cidr_block_pub" {
-  type = string
-}
-
-#route_table
-variable "rt_tags_priv" {
-  type = map(any)
-}
-variable "rt_cidr_block_priv" {
-  type = string
-}
-##############################
-#eip
-variable "tags_eip" {
-  type = map(any)
-}
-##############################
-#nat
-variable "tags_nat" {
-  type = map(any)
-}
-##############################
-#sg_alb_web
-
-variable "ingress_rules_web" {
-  type = list(any)
-}
-variable "sg_name_web" {
-  type = string
-}
-variable "egress_rules_web" {
-  type = list(any)
-}
-variable "sg_description_web" {
-  type = string
-}
-# variable "security_groups_web" {
-#   type = list(any)
-# }
-variable "tags_sg_web" {
-  type = map(any)
-}
-##############################
-#sg_alb_app
-variable "ingress_rules_app" {
-  type = list(any)
-
-}
-variable "sg_name_app" {
-  type = string
-}
-variable "egress_rules_app" {
-  type = list(any)
-}
-variable "sg_description_app" {
-  type = string
-}
-# variable "security_groups_app" {
-#   type = list(any)
-# }
-variable "tags_sg_app" {
-  type = map(any)
-}
-##############################
-#sg_web_server
-
-variable "sg_name_web_server" {
-  type = string
-}
-variable "egress_rules_web_server" {
-  type = list(any)
-}
-variable "sg_description_web_server" {
-  type = string
-}
-variable "tags_sg_web_server" {
-  type = map(any)
-}
-##############################
-#sg_app_server
-
-variable "sg_name_app_server" {
-  type = string
-}
-variable "egress_rules_app_server" {
-  type = list(any)
-}
-variable "sg_description_app_server" {
-  type = string
-}vpc_zone_identifier
-variable "tags_sg_app_server" {
-  type = map(any)
-}
-##############################
-#web alb
-variable "tags_alb_web" {
-  type = map(any)
-}
-
-#app alb
-variable "tags_alb_app" {
-  type = map(any)
-}
-##############################
-#RDS Details
-
-variable "database_subnets" {
-  description = "CIDR blocks for database subnets"
-  type        = list(string)
-  default     = ["10.0.5.0/24", "10.0.6.0/24"]
-}
-
-variable "tags_subnet_group" {
-  type = map(any)
-}
-
-variable "rds_subnet_group" {
-  type = string
-}
-
-##############################
-#ALB variables 
-variable is_internal{
-    type = bool
-    default = false
-}
-
-
-
-##############################
-#target group 
-variable "tags_app_tg" {
-  type = map(any)
-}
-variable "tags_web_tg" {
-  type = map(any)
-}
-
-##########################################
-#DB Subnet
-variable "tags_subnet_5" {
-  type = map(any)
-}
-
-variable "tags_subnet_6" {
-  type = map(any)
+variable "asg_desired_capacity" {
+  description = "Desired capacity for auto scaling group"
+  default     = 2
 }

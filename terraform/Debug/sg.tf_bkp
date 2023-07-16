@@ -1,3 +1,6 @@
+
+
+
 # Create security groups for load balancer, web server, app server and database
 resource "aws_security_group" "web-alb-sg" {
   vpc_id            = aws_vpc.vpc.id
