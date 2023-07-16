@@ -96,7 +96,7 @@ resource "aws_security_group" "app_server-sg" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = null
-    security_groups      = [aws_security_group.alb-sg.id]
+    security_groups      = [aws_security_group.app-alb-sg.id]
   }
   ingress {
     description = "allow on 443"
@@ -104,7 +104,7 @@ resource "aws_security_group" "app_server-sg" {
     to_port     = 443
     protocol    = "tcp"
     cidr_blocks = null
-    security_groups       = [aws_security_group.alb-sg.id]
+    security_groups       = [aws_security_group.app-alb-sg.id]
   }
   egress {
     description     = "allow"
