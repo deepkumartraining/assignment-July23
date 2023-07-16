@@ -119,7 +119,7 @@ resource "aws_security_group" "app_server-sg" {
 # RDS DB Security Setup
 #--Subnet Group creation
 resource "aws_db_subnet_group" "subnet_group" {
-  name       = "RDS-Subnet_group"
+  name       = "rds_subnet_group"
   subnet_ids = var.database_subnets
   tags = var.tags_subnet_group
 }
