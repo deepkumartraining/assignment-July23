@@ -29,11 +29,11 @@ resource "aws_security_group" "web_sg" {
   }
 }
 
-# Create security group for intermediate access from app tier to ILB
-resource "aws_security_group" "app_ilb_intermediate_sg" {
-  name        = "app-ilb-intermediate-sg"
-  description = "Intermediate security group for app tier to ILB access"
-  vpc_id      = aws_vpc.vpc.id
+# Create security group for intermediate access from ILB to app tier
+resource "aws_security_group" "intermediate_sg" {
+  name        = "intermediate-sg"
+  description = "Intermediate security group for ILB to app tier access"
+  vpc_id      = aws_vpc.example_vpc.id
 
   # Ingress rule for HTTP traffic from the ILB security group
   ingress {
@@ -63,7 +63,7 @@ resource "aws_security_group" "app_sg" {
     from_port        = 8080
     to_port          = 8080
     protocol         = "tcp"
-    security_groups = [aws_security_group.app_ilb_intermediate_sg.id]
+    security_groups = [aws_security_group.intermediate_sg.id]
   }
 
   # Ingress rule for SSH traffic from a specific IP range (example)
@@ -94,7 +94,7 @@ resource "aws_security_group" "ilb_sg" {
     from_port        = 8080
     to_port          = 8080
     protocol         = "tcp"
-    security_groups = [aws_security_group.app_ilb_intermediate_sg.id]
+    security_groups = [aws_security_group.intermediate_sg.id]
   }
 
   # Egress rule allowing all traffic
@@ -104,20 +104,4 @@ resource "aws_security_group" "ilb_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-
-# Create public subnets
-resource "aws_subnet" "public_subnet" {
-  count             = var.subnet_count
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = element(var.public_subnet_cidr_blocks, count.index)
-  availability_zone = element(var.availability_zones, count.index)
-}
-
-# Create private subnets
-resource "aws_subnet" "private_subnet" {
-  count             = var.subnet_count
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = element(var.private_subnet_cidr_blocks, count.index)
-  availability_zone = element(var.availability_zones, count.index)
 }
