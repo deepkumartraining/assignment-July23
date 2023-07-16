@@ -220,6 +220,21 @@ variable "tags_alb_web" {
 variable "tags_alb_app" {
   type = map(any)
 }
+##############################
+#RDS Details
+variable "subnet_group_name" {
+  type = string
+}
+
+variable "database_subnets" {
+  description = "CIDR blocks for database subnets"
+  type        = list(string)
+  default     = ["10.0.5.0/24", "10.0.6.0/24"]
+}
+
+variable "tags_subnet_group" {
+  type = map(any)
+}
 
 ##############################
 #target group 

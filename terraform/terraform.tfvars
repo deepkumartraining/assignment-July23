@@ -30,7 +30,7 @@ tags_subnet_2 = {
 }
 
 #######################
-#subnet-1-private-ap-south-1a
+#subnet-3-private-ap-south-1a
 cidr_subnet_3 = "10.0.3.0/24"
 az_subnet_3   = "ap-south-1a"
 public_3      = "false"
@@ -40,7 +40,7 @@ tags_subnet_3 = {
 }
 
 #######################
-#subnet-2-private-ap-south-1b
+#subnet-4-private-ap-south-1b
 cidr_subnet_4 = "10.0.4.0/24"
 az_subnet_4   = "ap-south-1b"
 public_4      = "false"
@@ -67,6 +67,16 @@ tags_subnet_6 = {
   Name = "tf-priv-rds-ap-south-1b",
   Kind = "practice"
 }
+
+tags_subnet_group = {
+  Name = "rds-subnet-group",
+  Kind = "practice"
+}
+
+
+
+
+
 /*
 #######################
 #subnet-5-private-ap-south-1a for rds

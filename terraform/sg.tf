@@ -115,3 +115,29 @@ resource "aws_security_group" "app_server-sg" {
     security_groups = null
   }
 }
+
+# RDS DB Security Setup
+#--Subnet Group creation
+resource "aws_db_subnet_group" "subnet_group" {
+  name       = "RDS-Subnet_group"
+  subnet_ids = var.database_subnets
+  tags = var.tags_subnet_group
+}
+
+# DB Security Group
+resource "aws_security_group" "db_sg" {
+  vpc_id = aws_vpc.vpc.id
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    security_groups = [aws_security_group.app_server-sg]
+    cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
