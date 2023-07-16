@@ -7,7 +7,7 @@ resource "aws_autoscaling_group" "web_asg" {
   desired_capacity          = var.asg_desired_capacity
   vpc_zone_identifier       = aws_subnet.public_subnet[*].id
   health_check_type         = "ELB"
-  load_balancers            = [aws_lb.alb]
+  load_balancers            = [aws_lb.alb.arn]
 
   tag {
     key                 = "Name"
