@@ -73,6 +73,8 @@ tags_subnet_group = {
   Kind = "practice"
 }
 
+rds_subnet_group   = "rds_subnet_group"
+
 
 
 

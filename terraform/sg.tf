@@ -119,7 +119,7 @@ resource "aws_security_group" "app_server-sg" {
 # RDS DB Security Setup
 #--Subnet Group creation
 resource "aws_db_subnet_group" "subnet_group" {
-  name       = "rds_subnet_group"
+  name       = var.rds_subnet_group
   subnet_ids = var.database_subnets
   tags = var.tags_subnet_group
 }
@@ -131,7 +131,7 @@ resource "aws_security_group" "db_sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    security_groups = [aws_security_group.app_server-sg]
+    security_groups = null #need to configure for security
     cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]
   }
   egress {

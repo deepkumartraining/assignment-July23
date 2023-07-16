@@ -236,6 +236,10 @@ variable "tags_subnet_group" {
   type = map(any)
 }
 
+variable "rds_subnet_group" {
+  type = string
+}
+
 ##############################
 #target group 
 variable "tags_app_tg" {
