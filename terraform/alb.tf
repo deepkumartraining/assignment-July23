@@ -41,7 +41,7 @@ resource "aws_security_group" "alb_sg" {
 
 # internal lb
 resource "aws_lb" "ilb" {
-  name               = "internal-load-balancer"
+  name               = "ilb"
   internal           = true
   load_balancer_type = "network"
   subnets            = aws_subnet.private_subnet[*].id
