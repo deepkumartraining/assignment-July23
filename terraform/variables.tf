@@ -62,3 +62,12 @@ variable "asg_desired_capacity" {
   description = "Desired capacity for auto scaling group"
   default     = 2
 }
+
+variable "subnet_count" {
+  description = "Number of subnets"
+  default     = 2
+}
+
+variable "vpc_id" {
+  description = "VPC ID"
+}
