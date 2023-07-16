@@ -81,5 +81,12 @@ variable "tags_vpc" {
   }
 }
 
-tags_igw{}
+variable "tags_igw" {
+  description = "Tags for the IGW"
+  type        = map(string)
+  default     = {
+    Name = "tf-igw"
+    Environment = "Practice"
+  }
+}
 
