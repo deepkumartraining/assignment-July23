@@ -97,11 +97,27 @@ resource "aws_security_group" "db_sg" {
     security_groups = [aws_security_group.ilb_intermediate_sg.id]
   }
 
-  # Egress rule allowing all traffic to the intermediate security group
+  # Egress rule allowing all traffic
   egress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
     security_groups = [aws_security_group.ilb_intermediate_sg.id]
   }
+}
+
+# Create public subnets
+resource "aws_subnet" "public_subnet" {
+  count             = var.subnet_count
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = cidrsubnet(var.vpc_cidr_block, 8, count.index)
+  availability_zone = element(var.availability_zones, count.index)
+}
+
+# Create private subnets
+resource "aws_subnet" "private_subnet" {
+  count             = var.subnet_count
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = cidrsubnet(var.vpc_cidr_block, 8, count.index + 2)
+  availability_zone = element(var.availability_zones, count.index)
 }

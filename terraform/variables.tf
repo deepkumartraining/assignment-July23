@@ -8,14 +8,9 @@ variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "public_subnet_cidr_blocks" {
-  description = "CIDR blocks for public subnets"
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
-}
-
-variable "private_subnet_cidr_blocks" {
-  description = "CIDR blocks for private subnets"
-  default     = ["10.0.10.0/24", "10.0.11.0/24"]
+variable "subnet_count" {
+  description = "Number of subnets to create"
+  default     = 2
 }
 
 variable "availability_zones" {
@@ -38,8 +33,13 @@ variable "app_ami_id" {
   default     = "ami-0f11bdca99c4ccd38"
 }
 
+variable "db_ami_id" {
+  description = "AMI ID for database instances"
+  default     = "ami-0c29b26cccf1ca4f0"
+}
+
 variable "instance_type" {
-  description = "Instance type for web and app instances"
+  description = "Instance type for web, app, and database instances"
   default     = "t2.micro"
 }
 
