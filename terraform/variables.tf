@@ -80,3 +80,6 @@ variable "tags_vpc" {
     Environment = "Practice"
   }
 }
+
+tags_igw{}
+
