@@ -86,10 +86,11 @@ ILB - Internal load balancer in front of App-tier
 ******************************************************************************************
 ### Security - SecOps consideration
 
-#### API gateway can introduce in from of ALB/CDN to provide better security in terms of
+#### API gateway can introduce in front of ALB/CDN to provide better security in terms of
     Traffic filtering
     Rate limiting
-    Route redirection
+    Route redirection/context switching
+    Secure access of Public APIs/endpo- Auth Key, JWT and other
 
 #### IAM Consideration - user/group/roles/policies/ACLs
 
