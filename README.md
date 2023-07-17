@@ -15,7 +15,7 @@
 --------------------------------------------------------------------------------------
 ### Reference Pointers
 
-Below mentioned components can be provisioined with :
+Below AWS resources will be created by IAC - Terraform :
 
 #### Virtual Private Cloud (VPC): 
 The VPC is the foundation of the infrastructure and provides isolated network space for resources. It is created with the specified CIDR block (e.g., 10.0.0.0/16).
