@@ -90,7 +90,7 @@ ILB - Internal load balancer in front of App-tier
     Traffic filtering
     Rate limiting
     Route redirection/context switching
-    Secure access of Public APIs/endpo- Auth Key, JWT and other
+    Secure access of Public APIs/endpoints- Auth Key, JWT and other
 
 #### IAM Consideration - user/group/roles/policies/ACLs
 
