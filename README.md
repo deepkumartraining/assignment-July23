@@ -1,7 +1,7 @@
 # ***********************Assignment-July23*************************
 
 *************************************************************************************
-## First Challenge Solution
+## 1st Challenge Solution
 
 ### 3-Tier Web Application Architecture
 
@@ -86,9 +86,9 @@ ILB - Internal load balancer in front of App-tier
 ### Security - SecOps consideration
 
 #### API gateway can introduce in from of ALB/CDN to provide better security in terms of
-    -- Traffic filtering
-    -- Rate limiting
-    -- Route redirection
+    Traffic filtering
+    Rate limiting
+    Route redirection
 
 #### IAM Consideration - user/group/roles/policies/ACLs
 
@@ -133,6 +133,37 @@ ILB - Internal load balancer in front of App-tier
 #### Third-Party
 For example - Splunk
     Logsync can establish with AWS Appsync, destination would be Splunk and On top of that need based monitoring/dashboarding can configure accordingly.
+
+*************************************************************************************
+## 2nd Challenge Solution
+
+### Automation script for gathering metadata of Instance in AWS
+
+Script:
+
+![Script](/scripts/Instancemetadata.py)
+
+*************************************************************************************
+## 3rd Challenge Solution
+
+### object/objects finding via key in nested object
+
+Script:
+
+![Script](/scripts/nestedobjectkey.py)
+
+### Execution Snapshots
+
+![Test-Output](/Arch/script_3_test.JPG)
+
+*************************************************************************************
+
+
+
+
+
+
+
 
 
 
