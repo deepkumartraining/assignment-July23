@@ -134,33 +134,34 @@ ILB - Internal load balancer in front of App-tier
 For example - Splunk
     Logsync can establish with AWS Appsync, destination would be Splunk and On top of that need based monitoring/dashboarding can configure accordingly.
 
+-------------------------------------------------------------------------------------
+## Another Solution - Microservice Architecture on Managed K8S
+
+### Disclaimer: Not sure, but i will try my level best to present 3-tier architecture - Microservice on k8s
+
 *************************************************************************************
 ## 2nd Challenge Solution
 
 ### Automation script for gathering metadata of Instance in AWS
 
-Script:
+Solution-Challenge-2:
 
-![Script](/scripts/Instancemetadata.py)
+![Solution-Challenge-2](/scripts/Instancemetadata.py)
 
 *************************************************************************************
 ## 3rd Challenge Solution
 
 ### object/objects finding via key in nested object
 
-Script:
+Solution-Challenge-3:
 
-![Script](/scripts/nestedobjectkey.py)
+![Solution-Challenge-3](/scripts/nestedobjectkey.py)
 
 ### Execution Snapshots
 
 ![Test-Output](/Arch/script_3_test.JPG)
 
 *************************************************************************************
-
-
-
-
 
 
 
