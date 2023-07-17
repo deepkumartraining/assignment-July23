@@ -59,6 +59,18 @@ resource "aws_lb_target_group" "web_tg" {
 
 }
 
+resource "aws_lb_listener" "web_listener" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = 8080
+  protocol          = "TCP"
+
+  default_action {
+    target_group_arn = aws_lb_target_group.web_tg.arn
+    type             = "forward"
+  }
+}
+
+
 resource "aws_lb_target_group" "app_tg" {
   name     = "app-target-group"
   port     = 8080
