@@ -5,7 +5,7 @@ resource "aws_lb" "alb" {
   subnets            = aws_subnet.public_subnet[*].id
   security_groups    = [aws_security_group.alb_sg.id]
 
-  enable_deletion_protection = true
+  enable_deletion_protection = false
 
   access_logs {
     bucket = "alb-logs"
