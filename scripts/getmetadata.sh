@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Step 1: Get instance ID from the instance's metadata
-INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+# Step 1: Get instance ID from the instance's metadata
+TEMP_INSTANCE_ID=$(aws ec2 describe-instances --instance-id $(curl -s http://169.254.169.254/latest/meta-data/instance-id) --query 'Reservations[].Instances[].InstanceId')
+INSTANCE_ID=$(echo $TEMP_INSTANCE_ID | awk -F'"' '{print $2}')
 
 # Step 2: Check if AWS CLI is installed
 if ! command -v aws &>/dev/null; then
