@@ -1,6 +1,6 @@
-# ***********************Assignment-July23*************************
+# ***********************Assignment-July23***********************
 
-*************************************************************************************
+*****************************************************************************
 ## 1st Challenge Solution
 
 ### 3-Tier Web Application Architecture
@@ -8,10 +8,11 @@
 ![Architecture](/Arch/3TierArch_WebApplication_Arch_v0.1.jpg)
 
 --------------------------------------------------------------------------------------
-### IAC - Terraform - Navigate to below link for complete codebase
+### IAC - Terraform - Navigate below link for complete codebase
 
 ![IAC-Code](/terraform/)
 
+--------------------------------------------------------------------------------------
 ### Reference Pointers
 
 Below mentioned components can be provisioined with :
