@@ -1,4 +1,49 @@
-## assignment-July23
+# ***************************Assignment-July23************************************
+
+*************************************************************************************
+## First Challenge Solution
+
+### 3-Tier Web Application Architecture
+
+![Architecture](/Arch/3TierArch_WebApplication_Arch_v0.1.jpg)
+
+--------------------------------------------------------------------------------------
+### IAC - Terraform
+
+![IAC](/terraform/)
+
+### Reference Pointers
+
+Below mentioned components can be provisioined with :
+
+#### Virtual Private Cloud (VPC): 
+The VPC is the foundation of the infrastructure and provides isolated network space for resources. It is created with the specified CIDR block (e.g., 10.0.0.0/16).
+
+![VPC](/Arch/VPCRoutemap.JPG)
+
+#### Subnets: 
+The infrastructure includes both public and private subnets. Public subnets are associated with a route table that has a route to the internet gateway, allowing outbound and inbound internet traffic. Private subnets are associated with a route table that routes outbound traffic through a NAT gateway and inbound traffic through the public subnet NAT gateway.
+
+![Subnets](/Arch/Subnet.JPG)
+
+#### Internet Gateway (IGW): 
+The IGW enables communication between the VPC and the internet. It is attached to the VPC, allowing resources in the public subnet to have direct access to the internet.
+
+#### NAT Gateway: 
+The NAT gateway is deployed in the public subnet to provide internet access to resources in the private subnet. It is associated with an Elastic IP address.
+
+#### Route Tables: 
+There are separate route tables for the public and private subnets. The public subnet route table routes traffic to the internet gateway, while the private subnet route table routes outbound traffic to the NAT gateway.
+
+#### Security Groups: 
+The infrastructure includes security groups for the web, app, and DB tiers. These security groups define inbound and outbound rules to control traffic flow. For example, the web security group allows HTTP and SSH traffic from specific sources, the app security group allows HTTP traffic from the web security group, and the DB security group allows MySQL traffic from the app security group.
+
+#### Auto Scaling Groups (ASGs): 
+ASGs are used to automatically manage the number of instances in the web and app tiers. They ensure that the desired number of instances is maintained, allowing for scalability and high availability.
+
+### RDS Database Instance: 
+The infrastructure includes an RDS database instance running MySQL. It is deployed in the private subnet and is accessible only from the app tier through the security group rules.
+
 
 Route 53 configure - need based
 Simple Routing Policy
