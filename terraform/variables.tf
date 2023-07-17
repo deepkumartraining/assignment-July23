@@ -47,11 +47,6 @@ variable "app_ami_id" {
   default     = "ami-0380e2c5e4c675b78"
 }
 
-variable "db_ami_id" {
-  description = "AMI ID for database instances"
-  default     = "ami-0c29b26cccf1ca4f0"
-}
-
 variable "instance_type" {
   description = "Instance type for web, app, and database instances"
   default     = "t2.micro"
