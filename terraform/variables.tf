@@ -3,6 +3,20 @@ variable "aws_region" {
   default     = "ap-south-1"
 }
 
+/*variable "vpc_id" {
+  description = "VPC ID"
+  default     = ""
+}
+*/
+variable "tags_vpc" {
+  description = "Tags for the VPC"
+  type        = map(string)
+  default     = {
+    Name = "MyVPC"
+    Environment = "Practice"
+  }
+}
+
 variable "vpc_cidr_block" {
   description = "CIDR block for VPC"
   default     = "10.0.0.0/16"
@@ -66,19 +80,6 @@ variable "asg_desired_capacity" {
 variable "subnet_count" {
   description = "Number of subnets"
   default     = 2
-}
-
-variable "vpc_id" {
-  description = "VPC ID"
-}
-
-variable "tags_vpc" {
-  description = "Tags for the VPC"
-  type        = map(string)
-  default     = {
-    Name = "MyVPC"
-    Environment = "Practice"
-  }
 }
 
 variable "tags_igw" {
