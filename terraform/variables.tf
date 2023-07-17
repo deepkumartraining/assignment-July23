@@ -3,11 +3,6 @@ variable "aws_region" {
   default     = "ap-south-1"
 }
 
-/*variable "vpc_id" {
-  description = "VPC ID"
-  default     = ""
-}
-*/
 variable "tags_vpc" {
   description = "Tags for the VPC"
   type        = map(string)

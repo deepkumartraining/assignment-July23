@@ -47,11 +47,28 @@ resource "aws_lb" "ilb" {
   subnets            = aws_subnet.private_subnet[*].id
 }
 
+resource "aws_lb_target_group" "web_tg" {
+  name     = "web-target-group"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.vpc.id
+  tags = {
+    Name        = "web-target-group"
+    Environment = "practice"
+  }
+
+}
+
 resource "aws_lb_target_group" "app_tg" {
   name     = "app-target-group"
   port     = 8080
   protocol = "TCP"
   vpc_id   = aws_vpc.vpc.id
+  tags = {
+    Name        = "app-target-group"
+    Environment = "practice"
+  }
+
 }
 
 resource "aws_lb_listener" "app_listener" {
