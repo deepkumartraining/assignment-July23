@@ -24,12 +24,12 @@ variable "public_subnet_cidr_blocks" {
 
 variable "private_subnet_cidr_blocks" {
   description = "CIDR blocks for private subnets"
-  default     = ["10.0.11.0/24", "10.0.12.0/24"]
+  default     = ["10.0.12.0/24", "10.0.11.0/24"]
 }
 
 variable "db_private_subnet_cidr_blocks" {
   description = "CIDR blocks for private subnets"
-  default     = ["10.0.21.0/24", "10.0.22.0/24"]
+  default     = ["10.0.20.0/24", "10.0.21.0/24"]
 }
 
 variable "availability_zones" {
