@@ -61,7 +61,7 @@ resource "aws_lb_target_group" "web_tg" {
 
 resource "aws_lb_listener" "web_listener" {
   load_balancer_arn = aws_lb.alb.arn
-  port              = 8080
+  port              = 80
   protocol          = "HTTP"
 
   default_action {
