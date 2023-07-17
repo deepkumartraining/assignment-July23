@@ -1,5 +1,6 @@
 # RDS database instance
 resource "aws_db_instance" "rds" {
+  identifier           = "rds-practice"
   engine               = "mysql"
   instance_class       = "db.t2.micro"
   allocated_storage    = 20

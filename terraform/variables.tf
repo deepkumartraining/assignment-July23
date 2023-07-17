@@ -39,12 +39,12 @@ variable "ssh_cidr_block" {
 
 variable "web_ami_id" {
   description = "AMI ID for web instances"
-  default     = "ami-0f11bdca99c4ccd38"
+  default     = "ami-0380e2c5e4c675b78"
 }
 
 variable "app_ami_id" {
   description = "AMI ID for app instances"
-  default     = "ami-0f11bdca99c4ccd38"
+  default     = "ami-0380e2c5e4c675b78"
 }
 
 variable "db_ami_id" {
