@@ -147,7 +147,7 @@ For example - Splunk
 
 Solution-Challenge-2:
 
-![Solution-Challenge-2](/scripts/Instancemetadata.py)
+![Solution-Challenge-2](/scripts/getmetadata.sh)
 
 *************************************************************************************
 ## 3rd Challenge Solution
@@ -163,20 +163,3 @@ Solution-Challenge-3:
 ![Test-Output](/Arch/script_3_test.JPG)
 
 *************************************************************************************
-
-
-
-
-
-
-
-
-Open Question:
-Why we need to put web layer in public subnet, it can be in private subnet as well and accessible via NAT Gateway
-Browse this point for details
-
-
-## Microservice Pattern
-
-
-CICD Model
